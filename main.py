@@ -2,6 +2,7 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 import google.generativeai as genai
+import api_key
 
 # Tensorflow Model Prediction
 def model_prediction(test_image):
@@ -14,7 +15,7 @@ def model_prediction(test_image):
     return result_index
 
 def fetch_API(disease_name, plant_name):
-    genai.configure(api_key="AIzaSyDCOn1pf2ail04yipozTV9Vt1JNaRcct6g")
+    genai.configure(api_key)
     model = genai.GenerativeModel("gemini-2.0-flash")
     response = model.generate_content("Explain how to cure and prevent " + disease_name + " in " + plant_name + " plants in two parts first cure and second prevention in points and less than 250 words and no extra text in the starting and the ending.")
     return response.text
